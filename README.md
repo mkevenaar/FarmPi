@@ -2,8 +2,8 @@
 
 [![Version](https://img.shields.io/github/v/release/mkevenaar/FarmPi.svg?color=brightgreen&label=version)](https://github.com/mkevenaar/FarmPi/releases/latest)
 [![Released](https://img.shields.io/badge/dynamic/json.svg?color=brightgreen&label=released&url=https://api.github.com/repos/mkevenaar/FarmPi/releases&query=$[0].published_at)](https://github.com/mkevenaar/FarmPi/releases/latest)
-![GitHub Releases (by Release)](https://img.shields.io/github/downloads/mkevenaar/FarmPi/latest/total.svg)
-[![Build status](https://img.shields.io/github/workflow/status/mkevenaar/FarmPi/build.svg)](https://github.com/mkevenaar/FarmPi/actions/workflows/build.yml)
+![GitHub Releases (all releases)](https://img.shields.io/github/downloads/mkevenaar/FarmPi/latest/total.svg)
+[![Build status](https://img.shields.io/github/workflow/status/mkevenaar/FarmPi/Build%20Image.svg)](https://github.com/mkevenaar/FarmPi/actions/workflows/build.yaml)
 
 A [Raspberry Pi](http://www.raspberrypi.org/) distribution for 3d printers. It includes the [OctoFarm](http://octofarm.net) software for managing and monitoring multiple Octoprint instances out of the box.
 
