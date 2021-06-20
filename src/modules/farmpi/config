@@ -1,0 +1,17 @@
+###############################################################################
+# All our config settings must start with FARMPI_
+
+# MongoDB
+[ -n "$FARMPI_MONGODB_VERSION" ] || FARMPI_MONGODB_VERSION=4.4
+
+# NodeJS
+[ -n "$FARMPI_NODEJS_VERSION" ] || FARMPI_NODEJS_VERSION=14.x
+
+# HAProxy
+[ -n "$FARMPI_INCLUDE_HAPROXY" ] || FARMPI_INCLUDE_HAPROXY=yes
+
+[ -n "$FARMPI_COMMIT" ] || FARMPI_COMMIT=`pushd "${DIST_PATH}" > /dev/null ; git rev-parse HEAD ; popd > /dev/null`
+
+# Fixed apt mirror
+[ -n "$FARMPI_APTMIRROR" ] || FARMPI_APTMIRROR=
+

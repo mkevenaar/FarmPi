@@ -1,0 +1,157 @@
+#!/usr/bin/env bash
+# FarmPI generation script
+# Helper script that runs in a Raspbian chroot to create the FarmPI distro
+# Written by Guy Sheffer <guysoft at gmail dot com> and Gina Häußge <osd@foosel.net>
+# Adapted for FarmPi by Maurice Kevenaar <maurice at kevenaar dot name>
+# GPL V3
+########
+set -x
+set -e
+
+export LC_ALL=C
+
+source /common.sh
+
+### Script ####
+
+unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"
+unpack /filesystem/home/root /root root
+apt-get update
+
+# in case we are building from a regular raspbian image instead of the lite one...
+remove_extra=$(remove_if_installed scratch squeak-plugins-scratch squeak-vm wolfram-engine python-minecraftpi minecraft-pi sonic-pi oracle-java8-jdk bluej libreoffice-common libreoffice-core freepats greenfoot nodered)
+echo "removing:" $remove_extra
+apt-get remove -y --purge  $remove_extra
+apt-get autoremove -y
+
+if [ "${BASE_DISTRO}" == "ubuntu" ]; then
+    apt-get -y --force-yes install jq git screen subversion cmake cmake-data avahi-daemon libavahi-compat-libdnssd1 libffi-dev libssl-dev libatlas3-base libraspberrypi-bin rpi.gpio-common
+else
+    apt-get -y --force-yes install jq git screen subversion cmake=3.13.4-1 cmake-data=3.13.4-1 avahi-daemon libavahi-compat-libdnssd1 libffi-dev libssl-dev libatlas3-base
+fi
+
+
+echo " - Reinstall iputils-ping"
+apt-get install --reinstall iputils-ping
+
+# MongoDB
+wget -qO - https://www.mongodb.org/static/pgp/server-$FARMPI_MONGODB_VERSION.asc | sudo apt-key add -
+echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/`cat /etc/os-release | grep "^ID=" | cut -d "=" -f2` `cat /etc/os-release | grep "^VERSION_CODENAME=" | cut -d "=" -f2`/mongodb-org/$FARMPI_MONGODB_VERSION multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$FARMPI_MONGODB_VERSION.list
+apt-get update
+apt-get install -y --force-yes mongodb-org
+systemctl enable mongod
+systemctl start mongod
+
+# NodeJS
+curl -sL https://deb.nodesource.com/setup_$FARMPI_NODEJS_VERSION | bash -
+apt update
+apt -y --force-yes install nodejs gcc g++ make
+
+# PM2 install
+npm install pm2 -g
+
+pushd /home/"${BASE_USER}"
+
+  # Install OctoFarm
+  sudo -u "${BASE_USER}" git clone https://github.com/NotExpectedYet/OctoFarm.git /home/"${BASE_USER}"/OctoFarm
+
+  cd /home/"${BASE_USER}"/OctoFarm
+  sudo -u "${BASE_USER}" npm start
+
+  env PATH=$PATH:/usr/bin /usr/lib/node_modules/pm2/bin/pm2 startup systemd -u "${BASE_USER}" --hp /home/"${BASE_USER}"
+
+  sudo -u "${BASE_USER}" pm2 save
+
+  # Stop PM2 instance
+  pkill -9 PM2
+
+  # Cleanup logs
+  rm -Rf /home/"${BASE_USER}"/OctoFarm/logs
+
+  #setup haproxy for http and https
+  if [ "$FARMPI_INCLUDE_HAPROXY" == "yes" ]
+  then
+    echo "--- Installing haproxy"
+    apt-get -y --force-yes install ssl-cert haproxy
+    rm /etc/ssl/private/ssl-cert-snakeoil.key /etc/ssl/certs/ssl-cert-snakeoil.pem
+  fi
+
+popd
+
+# Keep legacy compatibility
+ln -s /etc/custompios_buildbase /etc/farmpi_buildbase
+
+# allow pi / ${BASE_USER} user to run shutdown and service commands
+echo "${BASE_USER} ALL=NOPASSWD: /sbin/shutdown" > /etc/sudoers.d/octofarm-shutdown
+echo "${BASE_USER} ALL=NOPASSWD: /usr/sbin/service" > /etc/sudoers.d/octofarm-service
+
+#make sure users don't run git with sudo, thus breaking permissions, by adding /root/bin to the
+#default sudo path and placing a git wrapper script there that checks if it's run as root
+sed -i "s@secure_path=\"@secure_path=\"/root/bin:@g" /etc/sudoers
+chmod +x /root/bin/*
+
+# add some "How To" info to boot output
+# Note, this code is also in /filesystem/home/pi/scripts/
+sed -i 's@exit 0@@' /etc/rc.local
+cat <<'EOT' >> /etc/rc.local
+
+echo
+echo "------------------------------------------------------------"
+echo
+echo "You may now open a web browser on your local network and "
+echo "navigate to any of the following addresses to access "
+echo "OctoFarm:"
+echo
+for name in $_NAME;
+do
+    echo " http://$name.local"
+done
+
+for ip in $(hostname -I);
+do
+    echo "    http://$ip"
+done
+
+echo
+echo "https is also available, with a self-signed certificate."
+echo
+echo "------------------------------------------------------------"
+echo
+EOT
+
+echo 'exit 0' >> /etc/rc.local
+
+# add a longer welcome text to ~pi/.bashrc / ~${BASE_USER}/.bashrc
+echo "source /home/${BASE_USER}/scripts/welcome" >> /home/${BASE_USER}/.bashrc
+
+#unpack root in the end, so etc file are not overwritten, might need to add two roots int he future
+unpack /filesystem/root /
+
+#####################################################################
+### setup services
+
+### Disable GUI at start
+systemctl_if_exists disable lightdm.service || true
+
+update-rc.d change_password defaults
+update-rc.d change_hostname defaults
+
+### haproxy
+
+if [ "$FARMPI_INCLUDE_HAPROXY" == "yes" ]
+then
+  systemctl_if_exists enable gencert.service
+else
+  # let's remove the configs for system services we don't need
+  rm /etc/systemd/system/gencert.service
+fi
+
+#cleanup
+apt-get clean
+apt-get autoremove -y
+
+if [ -n "$FARMPI_APTMIRROR" ];
+then
+    echo "Reverting /etc/apt/sources.list"
+    mv /etc/apt/sources.list.backup /etc/apt/sources.list
+fi

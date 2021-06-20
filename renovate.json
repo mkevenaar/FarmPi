@@ -1,0 +1,13 @@
+{
+  "extends": [
+    "config:base"
+  ],
+  "assignees": ["mkevenaar"],
+  "labels": ["renovate"],
+  "packageRules": [
+  {
+    "matchUpdateTypes": ["minor", "patch", "pin", "digest"],
+    "automerge": true
+  }
+ ]
+}

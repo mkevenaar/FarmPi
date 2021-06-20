@@ -1,0 +1,14 @@
+export DIST_NAME=FarmPi
+export DIST_VERSION=0.1.0
+
+export BASE_DISTRO=ubuntu
+export BASE_ARCH=aarch64
+export BASE_ZIP_IMG=`ls -t $BASE_IMAGE_PATH/*-{ubuntu}-*-arm64-*.xz | head -n 1`
+export BASE_IGNORE_VARIANT_NAME=yes
+export BASE_USER=pi
+export BASE_USER_PASSWORD=raspberry
+
+export BASE_IMAGE_ENLARGEROOT=500
+export BASE_IMAGE_RESIZEROOT=250
+
+export MODULES="base(network, disable-services(farmpi), password-for-sudo)"
