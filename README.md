@@ -15,20 +15,32 @@ Download the latest stable build via this button:
 
 [![Version](https://img.shields.io/github/v/release/mkevenaar/FarmPi.svg?color=brightgreen&label=version)](https://github.com/mkevenaar/FarmPi/releases/latest)
 
+## Supported printers
+
+Currently this table is a guesstimate, once this image is in play for a while, numbers could change
+
+| Raspberry Pi | # of Printers |
+|--|--|
+| 3A+ | 5 |
+| 3B / 3B+  | 10 |
+| 4B - 2GB | 20 |
+| 4B - 4GB / 400 | 40 |
+| 4B - 8GB | 80 |
+
 ## How to use it?
 
 - Unzip the image and install it to an sd card [like any other Raspberry Pi image](https://www.raspberrypi.org/documentation/installation/installing-images/README.md)
 - Configure your WiFi by editing `farmpi-wpa-supplicant.txt` on the root of the flashed card when using it like a thumb drive, or use an UTP cable
 - Boot the Pi from the card
-- Log into your Pi via SSH (it is located at `farmpi.local` [if your computer supports bonjour](https://learn.adafruit.com/bonjour-zeroconf-networking-for-windows-and-linux/overview>) or find the IP address assigned by your router), default username is "pi", default password is "raspberry". Run `sudo raspi-config`. Once that is open:
+- Log into your Pi via SSH (it is located at `farmpi.local` [if your computer supports bonjour](https://learn.adafruit.com/bonjour-zeroconf-networking-for-windows-and-linux/overview>) or find the IP address assigned by your router), default username is "pi", default password is "raspberry".
 
-  - Change the password via "Change User Password"
-  - Optionally: Change the configured timezone via "Localization Options" > "Timezone".
-  - Optionally: Change the hostname via "Network Options" > "Hostname". Your FarmPi instance will then no longer be reachable under `farmpi.local` but rather the hostname you chose postfixed with `.local`, so keep that in mind.
+> :warning: This image is not running [Raspberry Pi OS](https://www.raspberrypi.org/software/), therefore `raspi-config` is not available
 
-   You can navigate in the menus using the arrow keys and Enter. To switch to selecting the buttons at the bottom use Tab.
+  - To Change the password; run: `passwd`
+  - Optionally: Change the configured timezone; run: `sudo dpkg-reconfigure tzdata`
+  - Optionally: Change the hostname; run: `echo myhostname | sudo tee /etc/hostname`
 
-   You do not need to expand the filesystem, current versions of FarmPi do this automatically.
+    Your FarmPi instance will then no longer be reachable under `farmpi.local` but rather the hostname you chose postfixed with `.local`, so keep that in mind.
 
 OctoFarm is located at [http://farmpi.local](http://farmpi.local) and also at [https://farmpi.local](https://farmpi.local). Since the SSL certificate is self signed (and generated upon first boot), you will get a certificate warning at the latter location, please ignore it.
 
