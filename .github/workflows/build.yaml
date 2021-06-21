@@ -55,6 +55,7 @@ jobs:
         echo "::set-output name=image::$IMAGE"
 
     - name: Zip Image
+      if: github.event_name == 'schedule'
       run: zip ${{ steps.copy.outputs.image }}.zip ${{ steps.copy.outputs.image }}.img
 
     # artifact upload will take care of zipping for us
