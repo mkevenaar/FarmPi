@@ -26,17 +26,7 @@ done
 
 echo
 echo "https is also available, with a self-signed certificate."
-
-if ! which lightdm 2>&1 >/dev/null;
-then
-    echo "------------------------------------------------------------------------------"
-    echo "This image comes without a desktop environment installed because it's not "
-    echo "required for running OctoFarm. If you want a desktop environment you can "
-    echo "install it via"
-    echo
-    echo "    sudo /home/pi/scripts/install-desktop"
-fi
-
+echo
 echo "------------------------------------------------------------------------------"
 echo "OctoFarm version : $_OCTOFARM_VERSION"
 echo "FarmPi version    : $_FARMPI_VERSION"
