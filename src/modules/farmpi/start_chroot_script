@@ -53,7 +53,7 @@ npm install pm2 -g
 pushd /home/"${BASE_USER}"
 
   # Install OctoFarm
-  sudo -u "${BASE_USER}" git clone https://github.com/NotExpectedYet/OctoFarm.git /home/"${BASE_USER}"/OctoFarm
+  sudo -u "${BASE_USER}" git clone https://github.com/OctoFarm/OctoFarm.git /home/"${BASE_USER}"/OctoFarm
 
   cd /home/"${BASE_USER}"/OctoFarm
   sudo -u "${BASE_USER}" npm start

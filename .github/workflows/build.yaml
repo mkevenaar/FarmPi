@@ -37,6 +37,14 @@ jobs:
         cd repository/src
         ../../CustomPiOS/src/update-custompios-paths
 
+    - name: Set nightly image version
+      if: github.event_name == 'schedule'
+      run: |
+        source repository/src/config
+        NOW=$(date +"%Y-%m-%d")
+        echo "DIST_VERSION=$DIST_VERSION-$NOW-nightly" > repository/src/config.local
+
+
     - name: Build Image
       run: |
         sudo modprobe loop
@@ -44,30 +52,19 @@ jobs:
         sudo bash -x ./build_dist
 
     - name: Copy output
-      # if: github.event_name == 'schedule'
       id: copy
       run: |
         source repository/src/config
-        NOW=$(date +"%Y-%m-%d-%H%M")
-        IMAGE=$NOW-farmpi-$DIST_VERSION
+        NOW=$(date +"%Y-%m-%d")
+        IMAGE=farmpi-$DIST_VERSION-$NOW-nightly
 
         cp repository/src/workspace/*.img $IMAGE.img
 
         echo "::set-output name=image::$IMAGE"
 
-    - name: Zip Image
-      # if: github.event_name == 'schedule'
-      run: |
-        mkdir deploy
-        zip deploy/${{ steps.copy.outputs.image }}.zip ${{ steps.copy.outputs.image }}.img
-
-    - name: Upload to server
-      # if: github.event_name == 'schedule'
-      uses: wlixcc/SFTP-Deploy-Action@v1.2.1
+    # artifact upload will take care of zipping for us
+    - uses: actions/upload-artifact@v2.2.4
+      if: github.event_name == 'schedule'
       with:
-        username: '${{ secrets.SSH_USERNAME }}'
-        server: '${{ secrets.SSH_REMOTE_HOST }}'
-        ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-        local_path: './deploy/'
-        remote_path: /web/farmpi.octofarm.net/public_html/nightly'
-        args: '-o ConnectTimeout=5'
+        name: ${{ steps.copy.outputs.image }}
+        path: ${{ steps.copy.outputs.image }}.img
