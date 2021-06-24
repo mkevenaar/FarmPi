@@ -44,7 +44,6 @@ jobs:
         NOW=$(date +"%Y-%m-%d")
         echo "DIST_VERSION=$DIST_VERSION-$NOW-nightly" > repository/src/config.local
 
-
     - name: Build Image
       run: |
         sudo modprobe loop
@@ -62,9 +61,24 @@ jobs:
 
         echo "::set-output name=image::$IMAGE"
 
-    # artifact upload will take care of zipping for us
-    - uses: actions/upload-artifact@v2.2.4
-      if: github.event_name == 'schedule'
+    - name: Zip Image
+      # if: github.event_name == 'schedule'
+      run: |
+        zip ${{ steps.copy.outputs.image }}.zip ${{ steps.copy.outputs.image }}.img
+
+    - name: Upload to server
+      # if: github.event_name == 'schedule'
+      uses: appleboy/scp-action@0.1.1
       with:
-        name: ${{ steps.copy.outputs.image }}
-        path: ${{ steps.copy.outputs.image }}.img
+        host: '${{ secrets.SSH_REMOTE_HOST }}'
+        username: '${{ secrets.SSH_USERNAME }}'
+        key: ${{ secrets.SSH_PRIVATE_KEY }}
+        source: '${{ steps.copy.outputs.image }}.zip'
+        target: /web/farmpi.octofarm.net/public_html/nightly'
+
+    # # artifact upload will take care of zipping for us
+    # - uses: actions/upload-artifact@v2.2.4
+    #   if: github.event_name == 'schedule'
+    #   with:
+    #     name: ${{ steps.copy.outputs.image }}
+    #     path: ${{ steps.copy.outputs.image }}.img
