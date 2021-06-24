@@ -68,13 +68,13 @@ jobs:
 
     - name: Upload to server
       # if: github.event_name == 'schedule'
-      uses: appleboy/scp-action@master
+      uses: garygrossgarten/github-action-scp@v0.7.3
       with:
+        local: '${{ steps.copy.outputs.image }}.zip'
+        remote: '/web/farmpi.octofarm.net/public_html/nightly/${{ steps.copy.outputs.image }}.zip'
         host: '${{ secrets.SSH_REMOTE_HOST }}'
         username: '${{ secrets.SSH_USERNAME }}'
-        key: ${{ secrets.SSH_PRIVATE_KEY }}
-        source: '${{ steps.copy.outputs.image }}.zip'
-        target: '/web/farmpi.octofarm.net/public_html/nightly'
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
     # # artifact upload will take care of zipping for us
     # - uses: actions/upload-artifact@v2.2.4
