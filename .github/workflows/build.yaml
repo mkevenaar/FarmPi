@@ -68,7 +68,7 @@ jobs:
 
     - name: Upload to server
       # if: github.event_name == 'schedule'
-      uses: appleboy/scp-action@0.1.1
+      uses: appleboy/scp-action@v0.1.1
       with:
         host: '${{ secrets.SSH_REMOTE_HOST }}'
         username: '${{ secrets.SSH_USERNAME }}'
