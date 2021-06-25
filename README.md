@@ -11,9 +11,17 @@ This repository contains the source script to generate the distribution out of a
 
 ## Where to get it?
 
-Download the latest stable build via this button:
+Download the latest stable build:
 
-[![Version](https://img.shields.io/github/v/release/mkevenaar/FarmPi.svg?color=brightgreen&label=version)](https://github.com/mkevenaar/FarmPi/releases/latest)
+[![Stable version](https://img.shields.io/github/v/release/mkevenaar/FarmPi.svg?color=brightgreen&label=version)](https://github.com/mkevenaar/FarmPi/releases/latest)
+
+Download the latest stable build (mirror):
+
+[![Stable version (mirror)](https://img.shields.io/github/v/release/mkevenaar/FarmPi.svg?color=brightgreen&label=version)](https://farmpi.octofarm.net/)
+
+Download the latest nightly builds:
+
+[![Nightly version](https://img.shields.io/badge/version-nightly-brightgreen)](https://farmpi.octofarm.net/)
 
 ## Supported printers
 
