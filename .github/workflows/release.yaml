@@ -1,0 +1,128 @@
+---
+
+name: Release
+on:
+  push:
+    branches:
+      - release/*
+
+jobs:
+  release:
+    if: startsWith(github.ref, 'refs/heads/release')
+    runs-on: ubuntu-latest
+    steps:
+    - name: Fetch all history for all tags and branches
+      run: |
+        cd repository
+        git fetch --prune --unshallow
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.9
+      with:
+        versionSpec: '5.x'
+
+    - name: Use GitVersion
+      uses: gittools/actions/gitversion/execute@v0.9.9
+      id: gitversion
+
+    - name: Install Dependencies
+      run: |
+        sudo apt update
+        sudo apt install coreutils p7zip-full qemu-user-static
+
+    - name: Checkout CustomPiOS
+      uses: actions/checkout@v2.3.4
+      with:
+        repository: 'guysoft/CustomPiOS'
+        path: CustomPiOS
+
+    - name: Checkout Project Repository
+      uses: actions/checkout@v2.3.4
+      with:
+        path: repository
+        submodules: true
+
+    - name: Download Raspbian Image
+      run: |
+        cd repository/src/image
+        wget -c --trust-server-names 'https://cdimage.ubuntu.com/releases/20.04/release/ubuntu-20.04.2-preinstalled-server-arm64+raspi.img.xz'
+
+    - name: Update CustomPiOS Paths
+      run: |
+        cd repository/src
+        ../../CustomPiOS/src/update-custompios-paths
+
+    - name: Set release image version
+      if: github.event_name == 'schedule'
+      run: |
+        source repository/src/config
+        echo "DIST_VERSION=${{ steps.gitversion.outputs.majorMinorPatch }}" > repository/src/config.local
+
+    - name: Build Image
+      run: |
+        sudo modprobe loop
+        cd repository/src
+        sudo bash -x ./build_dist
+
+    - name: Copy output
+      id: copy
+      run: |
+        source repository/src/config
+        IMAGE=farmpi-$DIST_VERSION
+
+        cp repository/src/workspace/*.img $IMAGE.img
+
+        echo "::set-output name=image::$IMAGE"
+
+    - name: Zip Image
+      run: |
+        zip ${{ steps.copy.outputs.image }}.zip ${{ steps.copy.outputs.image }}.img
+
+    - name: Upload to server
+      uses: garygrossgarten/github-action-scp@v0.7.3
+      with:
+        local: '${{ steps.copy.outputs.image }}.zip'
+        remote: '/web/farmpi.octofarm.net/public_html/${{ steps.copy.outputs.image }}.zip'
+        host: '${{ secrets.SSH_REMOTE_HOST }}'
+        username: '${{ secrets.SSH_USERNAME }}'
+        privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Extract owner and repo
+      uses: jungwinter/split@v1.1.0
+      id: repo
+      with:
+        seperator: '/'
+        msg: ${{ github.repository }}
+
+    - name: Install GitReleaseManager
+      uses: gittools/actions/gitreleasemanager/setup@v0.9.9
+      with:
+        versionSpec: '0.11.x'
+
+    - name: Create release with GitReleaseManager
+      uses: gittools/actions/gitreleasemanager/create@v0.9.9
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        owner: ${{ steps.repo.outputs._0 }}
+        repository: ${{ steps.repo.outputs._1 }}
+        milestone: ${{ steps.gitversion.outputs.majorMinorPatch }}
+        name: 'Release ${{ steps.gitversion.outputs.majorMinorPatch }}'
+        assets:  |
+          ${{ steps.copy.outputs.image }}.zip
+
+    - name: Publish release with GitReleaseManager
+      uses: gittools/actions/gitreleasemanager/publish@v0.9.9
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        owner: ${{ steps.repo.outputs._0 }}
+        repository: ${{ steps.repo.outputs._1 }}
+        tagName: ${{ steps.gitversion.outputs.majorMinorPatch }}
+
+    - name: Close release with GitReleaseManager
+      uses: gittools/actions/gitreleasemanager/close@v0.9.9
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        owner: ${{ steps.repo.outputs._0 }}
+        repository: ${{ steps.repo.outputs._1 }}
+        milestone: ${{ steps.gitversion.outputs.majorMinorPatch }}
+	
