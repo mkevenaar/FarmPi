@@ -51,7 +51,6 @@ jobs:
         ../../CustomPiOS/src/update-custompios-paths
 
     - name: Set release image version
-      if: github.event_name == 'schedule'
       run: |
         source repository/src/config
         echo "DIST_VERSION=${{ steps.gitversion.outputs.majorMinorPatch }}" > repository/src/config.local
