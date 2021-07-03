@@ -4,27 +4,13 @@ name: Release
 on:
   push:
     branches:
-      - release/*
+      - 'release/*'
 
 jobs:
   release:
     if: startsWith(github.ref, 'refs/heads/release')
     runs-on: ubuntu-latest
     steps:
-    - name: Fetch all history for all tags and branches
-      run: |
-        cd repository
-        git fetch --prune --unshallow
-
-    - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.9
-      with:
-        versionSpec: '5.x'
-
-    - name: Use GitVersion
-      uses: gittools/actions/gitversion/execute@v0.9.9
-      id: gitversion
-
     - name: Install Dependencies
       run: |
         sudo apt update
@@ -41,6 +27,18 @@ jobs:
       with:
         path: repository
         submodules: true
+        fetch-depth: 0
+
+    - name: Install GitVersion
+      uses: gittools/actions/gitversion/setup@v0.9.9
+      with:
+        versionSpec: '5.x'
+
+    - name: Use GitVersion
+      uses: gittools/actions/gitversion/execute@v0.9.9
+      id: gitversion
+      with:
+        targetPath: repository
 
     - name: Download Raspbian Image
       run: |
