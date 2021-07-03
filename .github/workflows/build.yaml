@@ -2,8 +2,10 @@
 
 name: Build Image
 on:
+  pull_request:
   push:
     branches:
+      - '**'
       - '!release/*'
   schedule:
     - cron: '0 0 * * *'
@@ -77,10 +79,3 @@ jobs:
         host: '${{ secrets.SSH_REMOTE_HOST }}'
         username: '${{ secrets.SSH_USERNAME }}'
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    # # artifact upload will take care of zipping for us
-    # - uses: actions/upload-artifact@v2.2.4
-    #   if: github.event_name == 'schedule'
-    #   with:
-    #     name: ${{ steps.copy.outputs.image }}
-    #     path: ${{ steps.copy.outputs.image }}.img
