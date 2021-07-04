@@ -21,7 +21,7 @@ Download the latest stable build (mirror):
 
 Download the latest nightly builds:
 
-[![Nightly version](https://img.shields.io/badge/version-nightly-brightgreen)](https://farmpi.octofarm.net/)
+[![Nightly version](https://img.shields.io/badge/version-nightly-brightgreen)](https://farmpi.octofarm.net/nightly)
 
 ## Supported printers
 
