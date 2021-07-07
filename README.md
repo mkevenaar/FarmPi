@@ -6,6 +6,21 @@
 [![Build status](https://img.shields.io/github/workflow/status/mkevenaar/FarmPi/Build%20Image.svg)](https://github.com/mkevenaar/FarmPi/actions/workflows/build.yaml)
 
 <!--ts-->
+* [FarmPi](#farmpi)
+   * [Where to get it?](#where-to-get-it)
+   * [Supported printers](#supported-printers)
+   * [How to use it?](#how-to-use-it)
+   * [Features](#features)
+   * [Developing](#developing)
+      * [Requirements](#requirements)
+      * [Build FarmPi From within FarmPi / Raspbian / Debian / Ubuntu](#build-farmpi-from-within-farmpi--raspbian--debian--ubuntu)
+      * [Building FarmPi Variants](#building-farmpi-variants)
+      * [Building Using Docker](#building-using-docker)
+      * [Building Using Vagrant](#building-using-vagrant)
+      * [Usage](#usage)
+
+<!-- Added by: runner, at: Wed Jul  7 12:17:15 UTC 2021 -->
+
 <!--te-->
 
 ***
