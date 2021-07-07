@@ -1,7 +1,6 @@
 ---
 
 name: Update TOC
-
 on:
   push:
     branches: [main]
