@@ -5,6 +5,10 @@
 ![GitHub Releases (all releases)](https://img.shields.io/github/downloads/mkevenaar/FarmPi/latest/total.svg)
 [![Build status](https://img.shields.io/github/workflow/status/mkevenaar/FarmPi/Build%20Image.svg)](https://github.com/mkevenaar/FarmPi/actions/workflows/build.yaml)
 
+***
+:information_source: I released a blog post with more detailed information. You can find the blog post [here](https://kevenaar.name/farmpi-running-octofarm-on-a-raspberry-pi/)
+***
+
 A [Raspberry Pi](http://www.raspberrypi.org/) distribution for 3d printers. It includes the [OctoFarm](http://octofarm.net) software for managing and monitoring multiple Octoprint instances out of the box.
 
 This repository contains the source script to generate the distribution out of an existing [Ubuntu](https://ubuntu.com/download/raspberry-pi) Raspberry Pi distro image.
