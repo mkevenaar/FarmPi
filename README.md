@@ -5,6 +5,9 @@
 ![GitHub Releases (all releases)](https://img.shields.io/github/downloads/mkevenaar/FarmPi/latest/total.svg)
 [![Build status](https://img.shields.io/github/workflow/status/mkevenaar/FarmPi/Build%20Image.svg)](https://github.com/mkevenaar/FarmPi/actions/workflows/build.yaml)
 
+<!--ts-->
+<!--te-->
+
 ***
 :information_source: I released a blog post with more detailed information. You can find the blog post [here](https://kevenaar.name/farmpi-running-octofarm-on-a-raspberry-pi/)
 ***
@@ -155,4 +158,3 @@ run_vagrant_build.sh [Variant]
 - The final image will be created at the `src/workspace`
 
 Code contribution would be appreciated!
-
