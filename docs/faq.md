@@ -1,7 +1,7 @@
 ---
 layout: default
 title: FAQ
-nav_order: 3
+nav_order: 4
 ---
 
 ## Table of contents
@@ -22,13 +22,13 @@ We are currently figuring out the limits of a Raspberry Pi vs OctoPrint instance
 
 Currently we are figureing out the number of OctoPrint instances a Raspberry Pi can handle. The numbers below are a guesstimate. It's better to be on the safe side. For example, if you currently have 18 printers, it would be better to get a Raspberry Pi 4B 4GB than a 2GB.
 
-| Raspberry Pi | # of Printers |
-|--|--|
-| 3A+ | 5 |
-| 3B / 3B+  | 10 |
-| 4B - 2GB | 20 |
-| 4B - 4GB / 400 | 40 |
-| 4B - 8GB | 80 |
+|  Raspberry Pi  | # of Printers |
+|:---------------|:--------------|
+| 3A+            | 5             |
+| 3B / 3B+       | 10            |
+| 4B - 2GB       | 20            |
+| 4B - 4GB / 400 | 40            |
+| 4B - 8GB       | 80            |
 
 ## I cannot find the FarmPi on my network, could you help?
 
@@ -37,6 +37,10 @@ If you are unable to find the IP address in your router's DHCP configuration and
 ## What are the default credentials for FarmPi?
 
 The default login username is `pi` with password `raspberry`. You should change this password to make your Pi secure!
+
+## I want to update to a new version of FarmPi how can I make a backup of my data?
+
+We have created a [guide](./guides/backup.md) for that.
 
 ## I have an issue with FarmPi, can you help?
 
