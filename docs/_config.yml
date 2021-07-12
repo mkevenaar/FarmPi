@@ -1,1 +1,12 @@
-theme: jekyll-theme-minimal
+layout: default
+name: FarmPi - Run OctoFarm on your Raspberry Pi
+description: FarmPi Official Documentation
+remote_theme: pmarsceill/just-the-docs
+color_scheme: "dark"
+search_enabled: true
+search.button: true
+aux_links:
+  "FarmPi GitHub":
+    - "https://github.com/mkevenaar/FarmPi"
+  "OctoFarm Home":
+    - "https://octofarm.net"

@@ -1,37 +1,11 @@
-## Welcome to GitHub Pages
+# FarmPi - Run OctoFarm on your Raspberry Pi
 
-You can use the [editor on GitHub](https://github.com/mkevenaar/FarmPi/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin scelerisque in dui eu pulvinar. Morbi vitae metus et tellus feugiat dignissim. Sed varius lacinia tempor. Nunc varius lacus dolor, vitae ultricies dui sodales non. Duis feugiat nec mi sed cursus. Morbi condimentum nisl eu luctus pulvinar. Nulla facilisi. Nulla facilisi. Phasellus ac sagittis sem, et pretium odio. Nullam venenatis euismod metus pharetra elementum. Nulla ornare consectetur libero, sed vulputate tellus convallis vitae. Vestibulum vitae laoreet justo, id eleifend nisi. Nullam sit amet aliquet nisi. Aenean imperdiet urna ac faucibus euismod. Nulla elementum felis ut magna lobortis, ac sollicitudin metus malesuada.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+Maecenas faucibus leo nisl. Pellentesque nisl lectus, accumsan nec lacus cursus, feugiat egestas turpis. Praesent pretium tempor augue, vitae varius orci sagittis eget. Etiam dui diam, dictum ut fringilla consequat, fermentum nec mauris. Curabitur at ante sed ligula rhoncus ullamcorper et ac velit. Donec quis nibh nulla. Proin tempor hendrerit augue, sit amet porta enim.
 
-### Markdown
+Nunc commodo lacinia ornare. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean porta sem a bibendum malesuada. Maecenas id lobortis felis. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Donec vitae egestas ante, ut molestie ante. Nullam vel auctor orci, sagittis bibendum mi. In hac habitasse platea dictumst. Aenean a consequat mi. Proin blandit massa odio, id tincidunt neque vestibulum at.
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+Maecenas et diam odio. Nunc vitae maximus ex. Nam iaculis urna et consequat suscipit. Phasellus ut euismod justo. Nullam porta mi orci, vel blandit ligula commodo nec. Fusce et interdum diam, ut tristique nisl. Maecenas maximus ligula nec lectus cursus commodo. Curabitur rutrum mollis enim, at maximus arcu tincidunt sollicitudin. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
 
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/mkevenaar/FarmPi/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+Proin et vulputate orci, sed cursus nisl. Cras finibus tincidunt lacus ac lacinia. Maecenas luctus elit ac nisi feugiat elementum quis at diam. Nunc tristique, dui at sodales viverra, libero felis efficitur dolor, eu pharetra dolor tortor ut nisl. In finibus nunc sit amet pretium semper. Quisque quis velit erat. Etiam ut laoreet felis, ac feugiat libero. Fusce suscipit vitae tellus a varius. Quisque dapibus elit ac nisl congue aliquet. Etiam fermentum libero vitae risus sollicitudin consequat.
