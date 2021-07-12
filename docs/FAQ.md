@@ -2,6 +2,13 @@
 title: FAQ
 ---
 
+## Table of contents
+
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 ## Can I run FarmPi and OctoPi on the same Raspberry Pi?
 
 FarmPi and [OctoPi](https://github.com/guysoft/OctoPi) are two different Raspberry Pi images. You cannot run two images on the same Raspberry Pi. You'll need an extra Raspberry Pi for FarmPi.
