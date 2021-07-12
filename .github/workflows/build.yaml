@@ -7,6 +7,9 @@ on:
     branches:
       - '**'
       - '!release/*'
+    paths:
+      - 'src/*'
+      - '.github/workflows/build.yaml'
   schedule:
     - cron: '0 0 * * *'
 
