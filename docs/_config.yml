@@ -10,6 +10,8 @@ aux_links:
     - "https://github.com/mkevenaar/FarmPi"
   "OctoFarm Home":
     - "https://octofarm.net"
+  "OctoFarm Discord":
+    - "https://discord.octofarm.net"
 aux_links_new_tab: true
 
 footer_content: "Copyright &copy; 2021-now Maurice Kevenaar. Distributed by an <a href=\"https://github.com/mkevenaar/FarmPi/blob/main/LICENSE\">GNU General Public License v3.0.</a>"
