@@ -2,7 +2,7 @@
 
 [![Version](https://img.shields.io/github/v/release/mkevenaar/FarmPi.svg?color=brightgreen&label=version)](https://github.com/mkevenaar/FarmPi/releases/latest)
 [![Released](https://img.shields.io/badge/dynamic/json.svg?color=brightgreen&label=released&url=https://api.github.com/repos/mkevenaar/FarmPi/releases&query=$[0].published_at)](https://github.com/mkevenaar/FarmPi/releases/latest)
-![GitHub Releases (all releases)](https://img.shields.io/github/downloads/mkevenaar/FarmPi/latest/total.svg)
+![GitHub Releases (all releases)](https://img.shields.io/github/downloads/mkevenaar/FarmPi/total.svg)
 [![Build status](https://img.shields.io/github/workflow/status/mkevenaar/FarmPi/Build%20Image.svg)](https://github.com/mkevenaar/FarmPi/actions/workflows/build.yaml)
 
 <!--ts-->
@@ -19,7 +19,7 @@
       * [Building Using Vagrant](#building-using-vagrant)
       * [Usage](#usage)
 
-<!-- Added by: runner, at: Wed Jul  7 12:17:15 UTC 2021 -->
+<!-- Added by: runner, at: Fri Jul 16 09:40:06 UTC 2021 -->
 
 <!--te-->
 
