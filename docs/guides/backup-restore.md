@@ -79,6 +79,8 @@ If this happens for you, open the `known_hosts` file that is shown in the messag
 
 ## Restoring a backup
 
+For restoring a backup, we are going to use the [MongoRestore](https://docs.mongodb.com/database-tools/mongorestore/) tool.
+
 SSH into your new FarmPi image, using the same method when you created your backup before and stop OctoFarm again.
 
 After stopping OctoFarm, you can restore your backup. To restore your backup, run the following commands:
