@@ -25,10 +25,10 @@ Once logged in, you should stop OctoFarm. To do this, enter the OctoFarm and sto
 
 ```bash
 cd OctoFarm
-npm stop:delete
+npm run stop:delete
 ```
 
-There should be a message in **red**{: style="color: red"} saying that it's **stopped**{: style="color: red"}
+The table presented should only contain its headers, no instance of OctoFarm should be shown in the table.
 
 We now can crate the dump. To create the dump, execute this command:
 
