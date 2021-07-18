@@ -24,5 +24,8 @@ gh_edit_branch: "main"
 gh_edit_source: docs
 gh_edit_view_mode: "tree"
 
+url: "https://farmpi.kevenaar.name" # the base hostname & protocol for your site
+
 plugins:
   - jemoji
+  - jekyll-sitemap

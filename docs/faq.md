@@ -40,7 +40,7 @@ The default login username is `pi` with password `raspberry`. You should change 
 
 ## I want to update to a new version of FarmPi how can I make a backup of my data?
 
-We have created a [guide](./guides/backup.md) for that.
+We have created a [guide](./guides/backup-restore.md) for that.
 
 ## I have an issue with FarmPi, can you help?
 
