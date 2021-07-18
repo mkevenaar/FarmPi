@@ -12,14 +12,8 @@
    * [How to use it?](#how-to-use-it)
    * [Features](#features)
    * [Developing](#developing)
-      * [Requirements](#requirements)
-      * [Build FarmPi From within FarmPi / Raspbian / Debian / Ubuntu](#build-farmpi-from-within-farmpi--raspbian--debian--ubuntu)
-      * [Building FarmPi Variants](#building-farmpi-variants)
-      * [Building Using Docker](#building-using-docker)
-      * [Building Using Vagrant](#building-using-vagrant)
-      * [Usage](#usage)
 
-<!-- Added by: runner, at: Fri Jul 16 09:40:06 UTC 2021 -->
+<!-- Added by: runner, at: Sun Jul 18 18:20:48 UTC 2021 -->
 
 <!--te-->
 
