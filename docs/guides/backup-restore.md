@@ -2,7 +2,7 @@
 layout: default
 title: Backup/Restore MongoDB database and Images
 parent: Guides
-nav_order: 2
+nav_order: 3
 ---
 
 ## Table of contents
