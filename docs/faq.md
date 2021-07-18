@@ -38,6 +38,10 @@ If you are unable to find the IP address in your router's DHCP configuration and
 
 The default login username is `pi` with password `raspberry`. You should change this password to make your Pi secure!
 
+## FarmPi is showing on my network, but farmpi.local does not work
+
+To make `farmpi.local` work, you'll need `bonjour` installed / configured. Have a look at the documentation over [here](https://learn.adafruit.com/bonjour-zeroconf-networking-for-windows-and-linux/overview) to get your system setup.
+
 ## I want to update to a new version of FarmPi how can I make a backup of my data?
 
 We have created a [guide](./guides/backup-restore.md) for that.

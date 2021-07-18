@@ -7,4 +7,4 @@ permalink: /
 
 # FarmPi - Running OctoFarm on your Raspberry Pi
 
-Welcome to the FarmPi documentation.
+Welcome to the FarmPi documentation. You should find all the documentation required to setup your own FarmPi image here. Have a look at the [Guides](guides/) section for more information.
