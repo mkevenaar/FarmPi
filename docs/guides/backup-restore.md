@@ -25,7 +25,7 @@ To create a backup you first need to login to your Raspberry Pi using [SSH](ssh.
 Once logged in, you should stop OctoFarm. To do this, enter the OctoFarm and stop OctoFarm. Execute these commands:
 
 ```bash
-cd OctoFarm
+cd ~/OctoFarm
 npm run stop:delete
 ```
 
