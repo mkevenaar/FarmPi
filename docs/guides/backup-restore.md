@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Backup/Restore MongoDB
+title: Backup/Restore MongoDB database and Images
 parent: Guides
 nav_order: 1
 ---
@@ -30,17 +30,18 @@ npm run stop:delete
 
 The table presented should only contain its headers, no instance of OctoFarm should be shown in the table.
 
-We now can crate the dump. To create the dump, execute this command:
+We now can create the database dump and copy the images for your history. To create the backup, execute these commands:
 
 ```bash
 mongodump --archive=/home/pi/octofarm.archive
+tar -czvf /home/pi/images.tar.gz /home/pi/OctoFarm/images
 ```
 
-This command creates an export of all the databases into the `octofarm.archive` file. This file contains all the data required to restore the database.
+This command creates an export of all the databases into the `octofarm.archive` file. This file contains all the data required to restore the database. Inside the file `images.tar.gz` any images that are created for your history.
 
 ## Transter to your local machine
 
-For transferring the dump, we are going to use `scp` (Secure CoPy). This tool allows us to transfer files from and to another linux machine, like the FarmPi. There are also other tools available like [WinSCP](https://winscp.net/) (Windows, Free) or [Cyberduck](https://cyberduck.io/) (Windows / MacOS, Free)
+For transferring the backup files, we are going to use `scp` (Secure CoPy). This tool allows us to transfer files from and to another linux machine, like the FarmPi. There are also other tools available like [WinSCP](https://winscp.net/) (Windows, Free) or [Cyberduck](https://cyberduck.io/) (Windows / MacOS, Free)
 
 I am assuming you have followed the directions shown in the [SSH](ssh.md) documentation. If you have done that correctly, these commands should work.
 
@@ -48,13 +49,14 @@ From a shell (Powershell, Terminal, CMD), enter a folder (using `cd`) where you 
 
 ```bash
 scp pi@farmpi.local:octofarm.archive .
+scp pi@farmpi.local:images.tar.gz .
 ```
 
 You could replace `farmpi.local` in the command above to the IP of your FarmPi or the source machine.
 
 If you get an message asking to confirm the host key and continue connecting, type `yes` and press enter.
 
-You should now enter your password. The transfer will now start.
+You should enter your password in both commands. Wait until the transfer is complete
 
 ## Transfer to the target
 
@@ -65,6 +67,7 @@ To transfer the file back to your new image, execute the following command.
 
 ```bash
 scp octofarm.archive pi@farmpi.local:
+scp images.tar.gz pi@farmpi.local:
 ```
 
 You could replace `farmpi.local` in the command above to the IP of your FarmPi or the source machine.
@@ -87,13 +90,21 @@ After stopping OctoFarm, you can restore your backup. To restore your backup, ru
 
 ```bash
 mongorestore --archive=/home/pi/octofarm.archive
+tar -czvf /home/pi/images.tar.gz /home/pi/OctoFarm/images
 ```
 
-Depending on the size of your database, this can take a while.
+Depending on the size of your database and images, this can take a while.
 
 Once the import is completed, you should make sure you are inside the OctoFarm folder and start OctoFarm again using these commands:
 
 ```bash
 cd ~/OctoFarm/
 npm run start
+```
+
+Optionally you could delete your backups from your local machine and Raspberry Pi. For the Raspberry Pi, run the following commands:
+
+```bash
+rm -f /home/pi/octofarm.archive
+rm -f /home/pi/images.tar.gz
 ```
