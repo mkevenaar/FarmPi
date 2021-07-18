@@ -1,6 +1,7 @@
 layout: default
-name: FarmPi - Run OctoFarm on your Raspberry Pi
+title: FarmPi - Run OctoFarm on your Raspberry Pi
 description: FarmPi Official Documentation
+url: "https://farmpi.kevenaar.name"
 remote_theme: pmarsceill/just-the-docs
 color_scheme: "dark"
 search_enabled: true
@@ -24,7 +25,7 @@ gh_edit_branch: "main"
 gh_edit_source: docs
 gh_edit_view_mode: "tree"
 
-url: "https://farmpi.kevenaar.name" # the base hostname & protocol for your site
+ga_tracking: G-5ECKR659PN
 
 plugins:
   - jemoji

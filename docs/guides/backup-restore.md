@@ -17,7 +17,7 @@ nav_order: 2
 
 ## Creating a backup
 
-For creating a backup, we are going to use the [MongoDump](https://docs.mongodb.com/database-tools/mongodump/) tool. This tool is installed by default on your FarmPi.
+For creating a backup, we are going to use the [MongoDump](https://docs.mongodb.com/database-tools/mongodump/){:target="_blank"} tool. This tool is installed by default on your FarmPi.
 
 To create a backup you first need to login to your Raspberry Pi using [SSH](ssh.md). You'll find the default credentials in the [FAQ](../faq.md#what-are-the-default-credentials-for-farmpi)
 
@@ -41,7 +41,7 @@ This command creates an export of all the databases into the `octofarm.archive` 
 
 ## Transter to your local machine
 
-For transferring the backup files, we are going to use `scp` (Secure CoPy). This tool allows us to transfer files from and to another linux machine, like the FarmPi. There are also other tools available like [WinSCP](https://winscp.net/) (Windows, Free) or [Cyberduck](https://cyberduck.io/) (Windows / MacOS, Free)
+For transferring the backup files, we are going to use `scp` (Secure CoPy). This tool allows us to transfer files from and to another linux machine, like the FarmPi. There are also other tools available like [WinSCP](https://winscp.net/){:target="_blank"} (Windows, Free) or [Cyberduck](https://cyberduck.io/){:target="_blank"} (Windows / MacOS, Free)
 
 I am assuming you have followed the directions shown in the [SSH](ssh.md) documentation. If you have done that correctly, these commands should work.
 
@@ -82,7 +82,7 @@ If this happens for you, open the `known_hosts` file that is shown in the messag
 
 ## Restoring a backup
 
-For restoring a backup, we are going to use the [MongoRestore](https://docs.mongodb.com/database-tools/mongorestore/) tool.
+For restoring a backup, we are going to use the [MongoRestore](https://docs.mongodb.com/database-tools/mongorestore/){:target="_blank"} tool.
 
 SSH into your new FarmPi image, using the same method when you created your backup before and stop OctoFarm again.
 
