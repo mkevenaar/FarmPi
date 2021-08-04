@@ -25,7 +25,7 @@ gh_edit_branch: "main"
 gh_edit_source: docs
 gh_edit_view_mode: "tree"
 
-ga_tracking: G-5ECKR659PN
+ga_tracking: UA-202622681-1
 
 plugins:
   - jemoji
