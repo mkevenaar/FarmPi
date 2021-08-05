@@ -74,6 +74,6 @@ OctoFarm is located at [http://farmpi.local](http://farmpi.local) and also at [h
 
 ## Developing
 
-Development information has been moved [here](https://farmpi.kevenaar.name/development/)
+Development information has been moved [here](https://farmpi.kevenaar.name/development)
 
 Code contribution would be appreciated!
