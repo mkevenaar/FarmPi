@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Build envrionment
+title: Build environment
 parent: Development
 nav_order: 2
 ---
