@@ -30,4 +30,4 @@ ga_tracking: UA-202622681-1
 plugins:
   - jemoji
   - jekyll-sitemap
-  - jekyll-last-modified-at  
+  - jekyll-last-modified-at

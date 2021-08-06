@@ -3,6 +3,7 @@ layout: default
 title: SSH to your Raspberry Pi
 parent: Guides
 nav_order: 2
+last_modified_at: 2021-08-06T16:29:03+02:00
 ---
 
 For MacOS and Linux operating systems, an SSH client is installed by default. For Windows 10 this is an optional feature that you can enable. There are also other 3rd party tools out there that enables SSH for your OS. For example PuTTY (Windows, Free) or Prompt (MacOS, Payed).
