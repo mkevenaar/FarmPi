@@ -34,7 +34,7 @@ sudo apt-get install gawk util-linux qemu-user-static git p7zip-full python3
 git clone https://github.com/guysoft/CustomPiOS.git
 git clone https://github.com/mkevenaar/FarmPi.git
 cd FarmPi/src/image
-wget -c --trust-server-names 'https://cdimage.ubuntu.com/releases/20.04/release/ubuntu-20.04.2-preinstalled-server-arm64+raspi.img.xz'
+wget -c --trust-server-names 'https://cdimage.ubuntu.com/releases/20.04.3/release/ubuntu-20.04.3-preinstalled-server-arm64+raspi.img.xz'
 cd ..
 ../../CustomPiOS/src/update-custompios-paths
 sudo modprobe loop
