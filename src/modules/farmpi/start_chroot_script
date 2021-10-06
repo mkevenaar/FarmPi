@@ -16,7 +16,8 @@ source /common.sh
 
 unpack /filesystem/home/pi /home/"${BASE_USER}" "${BASE_USER}"
 unpack /filesystem/home/root /root root
-apt-get update
+apt update
+
 
 # in case we are building from a regular raspbian image instead of the lite one...
 remove_extra=$(remove_if_installed scratch squeak-plugins-scratch squeak-vm wolfram-engine python-minecraftpi minecraft-pi sonic-pi oracle-java8-jdk bluej libreoffice-common libreoffice-core freepats greenfoot nodered)
@@ -25,9 +26,9 @@ apt-get remove -y --purge  $remove_extra
 apt-get autoremove -y
 
 if [ "${BASE_DISTRO}" == "ubuntu" ]; then
-    apt-get -y --force-yes install jq git screen subversion cmake cmake-data avahi-daemon libavahi-compat-libdnssd1 libffi-dev libssl-dev libatlas3-base libraspberrypi-bin rpi.gpio-common
+    apt-get -y --force-yes install jq git screen subversion cmake cmake-data avahi-daemon libavahi-compat-libdnssd1 libffi-dev libssl-dev libatlas3-base libraspberrypi-bin rpi.gpio-common ca-certificates
 else
-    apt-get -y --force-yes install jq git screen subversion cmake=3.13.4-1 cmake-data=3.13.4-1 avahi-daemon libavahi-compat-libdnssd1 libffi-dev libssl-dev libatlas3-base
+    apt-get -y --force-yes install jq git screen subversion cmake=3.13.4-1 cmake-data=3.13.4-1 avahi-daemon libavahi-compat-libdnssd1 libffi-dev libssl-dev libatlas3-base ca-certificates
 fi
 
 
