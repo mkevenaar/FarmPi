@@ -30,12 +30,12 @@ jobs:
         fetch-depth: 0
 
     - name: Install GitVersion
-      uses: gittools/actions/gitversion/setup@v0.9.10
+      uses: gittools/actions/gitversion/setup@v0.9.11
       with:
         versionSpec: '5.x'
 
     - name: Use GitVersion
-      uses: gittools/actions/gitversion/execute@v0.9.10
+      uses: gittools/actions/gitversion/execute@v0.9.11
       id: gitversion
       with:
         targetPath: repository
@@ -92,12 +92,12 @@ jobs:
         msg: ${{ github.repository }}
 
     - name: Install GitReleaseManager
-      uses: gittools/actions/gitreleasemanager/setup@v0.9.10
+      uses: gittools/actions/gitreleasemanager/setup@v0.9.11
       with:
         versionSpec: '0.11.x'
 
     - name: Create release with GitReleaseManager
-      uses: gittools/actions/gitreleasemanager/create@v0.9.10
+      uses: gittools/actions/gitreleasemanager/create@v0.9.11
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         owner: ${{ steps.repo.outputs._0 }}
@@ -108,7 +108,7 @@ jobs:
           ${{ steps.copy.outputs.image }}.zip
 
     - name: Publish release with GitReleaseManager
-      uses: gittools/actions/gitreleasemanager/publish@v0.9.10
+      uses: gittools/actions/gitreleasemanager/publish@v0.9.11
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         owner: ${{ steps.repo.outputs._0 }}
@@ -116,7 +116,7 @@ jobs:
         tagName: ${{ steps.gitversion.outputs.majorMinorPatch }}
 
     - name: Close release with GitReleaseManager
-      uses: gittools/actions/gitreleasemanager/close@v0.9.10
+      uses: gittools/actions/gitreleasemanager/close@v0.9.11
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         owner: ${{ steps.repo.outputs._0 }}
