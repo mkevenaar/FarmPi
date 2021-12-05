@@ -85,7 +85,7 @@ jobs:
         privateKey: ${{ secrets.SSH_PRIVATE_KEY }}
 
     - name: Extract owner and repo
-      uses: jungwinter/split@v1.1.0
+      uses: jungwinter/split@v2.0.0
       id: repo
       with:
         seperator: '/'
