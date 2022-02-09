@@ -18,6 +18,10 @@
 <!--te-->
 
 ***
+:information_source: You can find the FarmPi documentation [here](https://farmpi.kevenaar.name)
+***
+
+***
 :information_source: I released a blog post with more detailed information. You can find the blog post [here](https://kevenaar.name/farmpi-running-octofarm-on-a-raspberry-pi/)
 ***
 
