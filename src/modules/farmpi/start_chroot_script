@@ -48,6 +48,9 @@ curl -sL https://deb.nodesource.com/setup_$FARMPI_NODEJS_VERSION | bash -
 apt update
 apt -y --force-yes install nodejs gcc g++ make
 
+# Upgrade NPM
+npm install -g npm
+
 # PM2 install
 npm install pm2 -g
 
