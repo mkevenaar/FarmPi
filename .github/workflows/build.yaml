@@ -38,7 +38,7 @@ jobs:
     - name: Download Raspbian Image
       run: |
         cd repository/src/image
-        wget -c --trust-server-names 'https://cdimage.ubuntu.com/releases/20.04/release/ubuntu-20.04.4-preinstalled-server-arm64+raspi.img.xz'
+        wget -c --trust-server-names 'https://cdimage.ubuntu.com/releases/20.04/release/ubuntu-20.04.5-preinstalled-server-arm64+raspi.img.xz'
 
     - name: Update CustomPiOS Paths
       run: |
