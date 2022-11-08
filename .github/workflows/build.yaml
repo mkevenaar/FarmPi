@@ -76,7 +76,7 @@ jobs:
 
     - name: Upload to server
       if: github.event_name == 'schedule'
-      uses: garygrossgarten/github-action-scp@v0.7.3
+      uses: garygrossgarten/github-action-scp@v0.8.0
       with:
         local: '${{ steps.copy.outputs.image }}.zip'
         remote: '/web/farmpi.octofarm.net/public_html/nightly/${{ steps.copy.outputs.image }}.zip'
