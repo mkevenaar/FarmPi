@@ -1,0 +1,10 @@
+[Unit]
+Description=Mongo DB
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStart=/root/bin/mdb/mongod --dbpath /data/db/octofarm_db --logpath /data/db/octofarm_db_log/db.log --port 27017
+
+[Install]
+WantedBy=multi-user.target
