@@ -1,9 +1,6 @@
 ###############################################################################
 # All our config settings must start with FARMPI_
 
-# MongoDB
-[ -n "$FARMPI_MONGODB_VERSION" ] || FARMPI_MONGODB_VERSION=4.4
-
 # NodeJS
 [ -n "$FARMPI_NODEJS_VERSION" ] || FARMPI_NODEJS_VERSION=14.x
 
