@@ -1,6 +1,11 @@
 ###############################################################################
 # All our config settings must start with FARMPI_
 
+# MongoDB
+# Version list here:
+# https://github.com/themattman/mongodb-raspberrypi-binaries/releases
+[ -n "$FARMPI_MONGODB_VERSION" ] || FARMPI_MONGODB_VERSION=r6.0.5
+
 # NodeJS
 [ -n "$FARMPI_NODEJS_VERSION" ] || FARMPI_NODEJS_VERSION=14.x
 

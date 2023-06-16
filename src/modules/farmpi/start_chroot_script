@@ -37,13 +37,13 @@ apt-get install --reinstall iputils-ping
 
 # MongoDB
 cd /root
-mkdir -p /data/db/octofarm_db
-mkdir -p /data/db/octofarm_db_log
-wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/r6.0.5-rpi-unofficial/mongodb.ce.pi.r6.0.5.tar.gz
+mkdir -p /var/lib/mongodb
+mkdir -p /var/log/mongodb
+wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/$FARMPI_MONGODB_VERSION-rpi-unofficial/mongodb.ce.pi.$FARMPI_MONGODB_VERSION.tar.gz
 mkdir tmp-mongodb
 cd tmp-mongodb
-mv ../mongodb.ce.pi.r6.0.5.tar.gz .
-tar xzvf mongodb.ce.pi.r6.0.5.tar.gz
+mv ../mongodb.ce.pi.$FARMPI_MONGODB_VERSION.tar.gz .
+tar xzvf mongodb.ce.pi.$FARMPI_MONGODB_VERSION.tar.gz
 cp mongod /root/bin/mongod
 cd ..
 rm -rf tmp-mongodb
@@ -157,6 +157,7 @@ else
 fi
 
 systemctl_if_exists enable mongod.service
+systemctl_if_exists start mongod.service
 
 #cleanup
 apt-get clean
