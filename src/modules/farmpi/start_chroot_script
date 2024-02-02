@@ -36,12 +36,18 @@ echo " - Reinstall iputils-ping"
 apt-get install --reinstall iputils-ping
 
 # MongoDB
-wget -qO - https://www.mongodb.org/static/pgp/server-$FARMPI_MONGODB_VERSION.asc | sudo apt-key add -
-echo "deb [ arch=amd64,arm64 ] http://repo.mongodb.org/apt/`cat /etc/os-release | grep "^ID=" | cut -d "=" -f2` `cat /etc/os-release | grep "^VERSION_CODENAME=" | cut -d "=" -f2`/mongodb-org/$FARMPI_MONGODB_VERSION multiverse" | sudo tee /etc/apt/sources.list.d/mongodb-org-$FARMPI_MONGODB_VERSION.list
-apt-get update
-apt-get install -y --force-yes mongodb-org
-systemctl enable mongod
-systemctl start mongod
+cd /root
+mkdir -p /var/lib/mongodb
+mkdir -p /var/log/mongodb
+wget https://github.com/themattman/mongodb-raspberrypi-binaries/releases/download/$FARMPI_MONGODB_VERSION-rpi-unofficial/mongodb.ce.pi.$FARMPI_MONGODB_VERSION.tar.gz
+mkdir tmp-mongodb
+cd tmp-mongodb
+mv ../mongodb.ce.pi.$FARMPI_MONGODB_VERSION.tar.gz .
+tar xzvf mongodb.ce.pi.$FARMPI_MONGODB_VERSION.tar.gz
+cp mongod /root/bin/mongod
+cd ..
+rm -rf tmp-mongodb
+
 
 # NodeJS
 curl -sL https://deb.nodesource.com/setup_$FARMPI_NODEJS_VERSION | bash -
@@ -149,6 +155,9 @@ else
   # let's remove the configs for system services we don't need
   rm /etc/systemd/system/gencert.service
 fi
+
+systemctl_if_exists enable mongod.service
+systemctl_if_exists start mongod.service
 
 #cleanup
 apt-get clean
